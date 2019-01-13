@@ -40,7 +40,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
 
-    flash[:success] = 'tasklist は正常に削除されました'
+    flash[:success] = 'task は正常に削除されました'
     redirect_to tasks_url
   end
   
@@ -53,4 +53,4 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:content)
   end
-end
+end  
