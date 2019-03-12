@@ -1,5 +1,20 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Content</th>
+      <th>Status</th>
+      <th>Operation</th>
+    </tr>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.id %></td>
+        <td><%= task.content %></td>
+        <td><%= task.status %></td>
+        <td><%= link_to "詳細", task %> <%= link_to "編集", edit_task_path(task) %> <%= link_to "削除", task, method: :delete %></td>
+      </tr>
+    <% end %>
+  </table>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">

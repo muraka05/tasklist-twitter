@@ -2,7 +2,8 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.all
+    # @tasks = current_user.tasks
+    @tasks = Task.where(user_id: current_user.id)
   end
 
   def show
@@ -10,10 +11,13 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    @task.user = current_user
+    # @task = current_user.tasks.build
   end
 
   def create
     @task = Task.new(task_params)
+    @task.user = current_user
     
     if @task.save
       flash[:success] = 'task が正常に投稿されました'
